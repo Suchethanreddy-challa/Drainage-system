@@ -14,7 +14,7 @@ const protect = async (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'sdm_jwt_2026_Suchethan_secure_key');
     req.user = await User.findById(decoded.id);
     if (!req.user) {
       return res.status(401).json({ success: false, message: 'User not found' });
